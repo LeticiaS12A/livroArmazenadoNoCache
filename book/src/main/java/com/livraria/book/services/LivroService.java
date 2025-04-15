@@ -17,18 +17,6 @@ public class LivroService {
 	@Autowired
 	LivroRepository livroRepository;
 
-//	//Salvar
-//	public LivroDTO salvar(LivroDTO livroDTO) {
-//		Livro livro = new Livro();
-//		
-//		livro.setNomeLivro(livroDTO.getNomeLivro());
-//		livro.setNomeAutor(livroDTO.getNomeAutor());
-//		
-//		livro = livroRepository.save(livro);
-//		
-//		return new LivroDTO(livro);
-//	}
-	
     private List<Livro> cacheLivros = new ArrayList<>();
 
     //Adicionar um livro ao cache
@@ -46,7 +34,7 @@ public class LivroService {
     }
 	
 	//Buscar
-    public Livro buscarLivroPorId(int bookId) {
+    public Livro getLivroInfo(int bookId) {
         //Verifica se livro já está no cache
         for (Livro livro : cacheLivros) {
             if (livro.getBookId() == bookId) {
@@ -72,7 +60,7 @@ public class LivroService {
 
 	
 	//Atualizar
-    public Optional<LivroDTO> atualizarLivro(int bookId, LivroDTO dto) {
+    public Optional<LivroDTO> updateLivro(int bookId, LivroDTO dto) {
         Optional<Livro> livroOpt = livroRepository.findById(bookId);
         
         if (livroOpt.isPresent()) {

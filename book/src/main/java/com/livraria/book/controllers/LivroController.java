@@ -23,8 +23,8 @@ public class LivroController {
 	LivroService livroService;
 	
 	@GetMapping(value = "/{bookId}")
-    public ResponseEntity<Livro> buscarLivroPorId(@PathVariable int bookId) {
-        Livro livro = livroService.buscarLivroPorId(bookId);
+    public ResponseEntity<Livro> getLivroInfo(@PathVariable int bookId) {
+        Livro livro = livroService.getLivroInfo(bookId);
 
         if (livro != null) {
             return ResponseEntity.ok(livro);
@@ -34,9 +34,9 @@ public class LivroController {
     }
 
     @PutMapping("/{bookId}")
-    public ResponseEntity<LivroDTO> atualizarLivro(@PathVariable int bookId,@RequestBody LivroDTO livroDTO) {
+    public ResponseEntity<LivroDTO> updateLivro(@PathVariable int bookId,@RequestBody LivroDTO livroDTO) {
         
-        Optional<LivroDTO> livroAtualizado = livroService.atualizarLivro(bookId, livroDTO);
+        Optional<LivroDTO> livroAtualizado = livroService.updateLivro(bookId, livroDTO);
         
         if (livroAtualizado.isPresent()) {
             return ResponseEntity.ok(livroAtualizado.get());
